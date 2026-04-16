@@ -1,0 +1,56 @@
+:root {
+    --brand: #1e7f4c;
+    --accent: #34a853;
+    --surface: #f3fbf5;
+    --text: #093318;
+    --muted: #6b8f7a;
+}
+
+body {
+    background: linear-gradient(180deg, #f3fbf5 0%, #f9fff9 100%);
+    color: var(--text);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%) !important;
+    border: none !important;
+}
+.btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 20px rgba(30,127,76,0.25) !important;
+}
+
+.btn-ver-mas {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 0 3px rgba(30,127,76,0.08) !important;
+}
+
+.footer-bg {
+    background: linear-gradient(135deg, #072613 0%, var(--brand) 100%) !important;
+}
+.footer-bg a { color: #ffffff !important; }
+
+.page-header, .hero-banner {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%) !important;
+    color: white !important;
+}
+
+.fieldset-legend {
+    background: #eaf7ed !important;
+    color: var(--brand) !important;
+}
+
+.property-image {
+    background: linear-gradient(135deg, #e6f4ea 0%, #c8ecd3 100%) !important;
+}
+
+.hero-card { background: rgba(255,255,255,0.06) !important; }
+
+/* Small adjustments for contrast */
+a, .nav-link { color: var(--brand) !important; }
