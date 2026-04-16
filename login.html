@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Inmobiliaria PNK</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #000000 0%, #cae7fb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-container {
+            max-width: 500px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .login-card {
+            background: rgba(253, 249, 249, 0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #9564e4 0%, #7c3aed 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        .login-body {
+            padding: 2.5rem;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+    <link href="css/green-theme.css" rel="stylesheet">
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+    <main id="main-content" tabindex="-1" role="main">
+        <section class="login-container" aria-labelledby="titulo-login" role="region">
+            <div class="login-card">
+                <header class="login-header" role="banner">
+                    <h1 id="titulo-login" class="mb-0 fs-2">Inmobiliaria PNK</h1>
+                    <p class="mb-0 mt-2 opacity-75">Inicia sesión en tu cuenta</p>
+                </header>
+                <section class="login-body" aria-labelledby="form-login-titulo" role="region">
+                    <form aria-labelledby="form-login-titulo" autocomplete="on" novalidate>
+                        <h2 id="form-login-titulo" class="visually-hidden">Formulario de inicio de sesión</h2>
+                        <fieldset>
+                            <legend class="visually-hidden">Datos de acceso</legend>
+                            <div class="mb-4">
+                                <label for="usuario" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa tu usuario" autocomplete="username">
+                            </div>
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" autocomplete="current-password">
+                            </div>
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary" aria-label="Iniciar sesión">
+                            <i class="bi bi-box-arrow-in-right me-2" aria-hidden="true"></i>Continuar
+                        </button>
+                    </form>
+                    <div class="mt-4 p-3 rounded-3" style="background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.08);">
+                        <p class="mb-1 fw-semibold">Credenciales de administrador</p>
+                        <p class="mb-0 small text-muted">Usuario: <strong>Admin</strong> · Contraseña: <strong>Adminpass</strong></p>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Se eliminó la lógica de autenticación/almacenamiento local; redirige a index.html al enviar -->
+    <script>
+        (function() {
+            var form = document.querySelector('form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            });
+        })();
+    </script>
+</body>
+
+</html>

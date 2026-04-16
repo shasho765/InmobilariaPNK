@@ -1,0 +1,622 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Inmobiliaria PNK</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --brand: #4f46e5;
+            --accent: #7c3aed;
+            --surface: #f8fafc;
+            --text: #1f2937;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .navbar {
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+        }
+
+        .navbar-brand {
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-ver-mas {
+            background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ver-mas:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+            color: white;
+        }
+
+        .footer-bg {
+            background: linear-gradient(135deg, #111827 0%, var(--brand) 100%);
+            border-radius: 0;
+        }
+        .footer-bg a {
+            color: #ffffff;
+        }
+
+        .fieldset-border {
+            border: 2px solid var(--brand);
+            padding: 1.5rem;
+            border-radius: 18px;
+            position: relative;
+            margin-top: 1.5rem;
+            background: white;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            padding: 3rem;
+            border: 1px solid rgba(79, 70, 229, 0.1);
+        }
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        .form-label {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .fieldset-legend {
+            position: absolute;
+            top: -16px;
+            left: 24px;
+            background: #eef2ff;
+            padding: 0 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: var(--brand);
+        }
+
+        .hero-banner {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, var(--brand) 100%);
+            color: white;
+            border-radius: 24px;
+            padding: 3rem 3.5rem;
+            overflow: hidden;
+            min-height: 220px;
+        }
+        .page-header {
+            background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 30px 30px;
+            text-align: center;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.1), transparent 25%);
+            pointer-events: none;
+        }
+
+        .hero-content,
+        .hero-panel {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 3vw, 4rem);
+            line-height: 1.02;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text {
+            max-width: 540px;
+            margin-bottom: 1.75rem;
+            opacity: 0.9;
+            font-size: 1.05rem;
+        }
+
+        .hero-actions .btn {
+            padding: 1rem 1.75rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .hero-actions .btn-light:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-card {
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+        }
+
+        .hero-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+        }
+
+        .property-image {
+            height: 240px;
+            border-radius: 1rem 1rem 0 0;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.1) 25%, transparent 25%, transparent 50%, rgba(15, 23, 42, 0.1) 50%, rgba(15, 23, 42, 0.1) 75%, transparent 75%, transparent);
+            background-size: 40px 40px;
+        }
+
+        .card {
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
+        }
+
+        .footer-bg a {
+            color: #ffffff;
+        }
+
+        @media (max-width: 992px) {
+            .hero-banner {
+                grid-template-columns: 1fr;
+                padding: 2.5rem 2rem;
+                min-height: auto;
+            }
+
+            .hero-panel {
+                order: -1;
+            }
+
+            .property-image {
+                height: 200px;
+            }
+        }
+    </style>
+    <link href="css/green-theme.css" rel="stylesheet">
+</head>
+
+
+<body class="bg-white" itemscope itemtype="https://schema.org/WebPage">
+
+    <header role="banner">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3" aria-label="Navegación principal" role="navigation">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-4 text-dark" href="index.html" aria-label="Inicio Inmobiliaria PNK" title="Inicio">INMOBILIARIA PNK</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a class="nav-link text-dark fw-semibold border border-dark px-3 mx-1" role="menuitem"
+                                href="registro-propietario.html">Registrar Propietario</a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a class="nav-link text-dark fw-semibold border border-dark px-3 mx-1" role="menuitem"
+                                href="registro-gestor.html">Registrar Gestor Freelance</a>
+                        </li>
+                        <!-- Opción de contacto eliminada -->
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0" role="none">
+                            <a class="btn btn-primary shadow-sm text-white" href="login.html" role="menuitem">Iniciar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+        <main id="main-content" tabindex="-1" class="container my-4" role="main">
+            <section aria-labelledby="banner-titulo" class="mb-5" role="region">
+                <div class="hero-banner" style="grid-template-columns: 1fr; min-height: 220px;">
+                    <div class="hero-content" style="text-align:center; width:100%;">
+                        <p class="text-uppercase fw-semibold mb-3" style="letter-spacing:0.16em; opacity:0.8;">Proyectos disponibles</p>
+                        <h1 id="banner-titulo" class="hero-title">Encuentra tu próximo bien de raíz con felicidad</h1>
+                        <p class="hero-text">Explora terrenos, departamentos y casas en la zona norte de Chile. Accede a los proyectos mejor valorados de la zona, invierte en una oportunidad, o date un gusto junto a tu familia.</p>
+                        <div class="hero-actions d-flex flex-wrap gap-3 justify-content-center">
+                            <a href="#buscador" class="btn btn-light btn-lg text-dark">Buscar propiedades</a>
+                            <a href="registro-propietario.html" class="btn btn-outline-light btn-lg">Registrarse</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section aria-labelledby="estadisticas-titulo" class="mb-4" role="region">
+                <h2 id="estadisticas-titulo" class="visually-hidden">Estadísticas del sistema</h2>
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="p-4 bg-white rounded shadow-sm h-100">
+                            <h3 class="h5 mb-1">Gestores registrados</h3>
+                            <p class="display-6 fw-bold mb-0">3</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-4 bg-white rounded shadow-sm h-100">
+                            <h3 class="h5 mb-1">Propietarios registrados</h3>
+                            <p class="display-6 fw-bold mb-0">20</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-4 bg-white rounded shadow-sm h-100">
+                            <h3 class="h5 mb-1">Propiedades disponibles</h3>
+                            <p class="display-6 fw-bold mb-0">40</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="buscador" aria-labelledby="buscador-titulo" class="mb-5" role="search">
+                <fieldset class="fieldset-border">
+                    <legend id="buscador-titulo" class="fieldset-legend">Buscador</legend>
+                    <form id="formBuscador" class="row g-3 align-items-center justify-content-center" autocomplete="on" aria-labelledby="buscador-titulo">
+                        <div class="col-md-3">
+                            <label for="selectComuna" class="visually-hidden">Comuna</label>
+                            <select id="selectComuna" class="form-select border-dark" name="comuna" autocomplete="off">
+                                <option value="">Comuna</option>
+                                <option value="La Serena">La Serena</option>
+                                <option value="Coquimbo">Coquimbo</option>
+                                <option value="Ovalle">Ovalle</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="selectProvincia" class="visually-hidden">Provincia</label>
+                            <select id="selectProvincia" class="form-select border-dark" name="provincia" autocomplete="off">
+                                <option value="">Provincia</option>
+                                <option value="Elqui">Elqui</option>
+                                <option value="Limarí">Limarí</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="selectSector" class="visually-hidden">Sector</label>
+                            <select id="selectSector" class="form-select border-dark" name="sector" autocomplete="off">
+                                <option value="">Sector</option>
+                                <option value="El Milagro">El Milagro</option>
+                                <option value="Peñuelas">Peñuelas</option>
+                                <option value="Centro">Centro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-primary px-4 border-dark text-white" aria-label="Buscar propiedades">Buscar</button>
+                        </div>
+                    </form>
+                </fieldset>
+            </section>
+            <section aria-labelledby="titulo-propiedades" role="region">
+                <h2 id="titulo-propiedades" class="visually-hidden">Catálogo de propiedades disponibles</h2>
+                <div id="propiedadesContainer" class="row row-cols-1 row-cols-md-3 g-4" aria-live="polite"></div>
+            </section>
+        </main>
+
+    <a href="#" class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4 shadow"
+        aria-label="Volver arriba"
+        style="z-index: 1000; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+        <i class="bi bi-arrow-up fs-4 text-white" aria-hidden="true"></i>
+    </a>
+
+    <footer class="footer-bg text-white mt-5 py-4" role="contentinfo">
+        <div class="container">
+            <div class="row align-items-center text-center text-md-start">
+                <div
+                    class="col-md-3 mb-3 mb-md-0 d-flex align-items-center justify-content-center justify-content-md-start">
+                    <span
+                        class="d-inline-flex align-items-center justify-content-center rounded bg-white text-dark fw-bold"
+                        style="width:40px; height:40px;">PNK</span>
+                    <span class="fw-bold ms-2">INMOBILIARIA PNK</span>
+                </div>
+                <div class="col-md-6 mb-3 mb-md-0 text-center">
+                    <a href="registro-propietario.html" class="text-white text-decoration-none mx-2" aria-label="Registro Propietario">Registro
+                        Propietario</a> -
+                    <a href="registro-gestor.html" class="text-white text-decoration-none mx-2" aria-label="Registro Gestor">Registro Gestor</a>
+                    <p class="mt-2 mb-0 small text-light">&copy; 2026 Todos los derechos Reservados Inmobiliaria PNK</p>
+                </div>
+                <div class="col-md-3 text-center text-md-end fs-4"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+
+    // Propiedades fijas (demo)
+    const propiedadesFijas = [
+        {
+            tipo: 'Terreno en venta',
+            img: 'img/terreno en venta.jpg',
+            comuna: 'La Serena',
+            provincia: 'Elqui',
+            sector: 'El Milagro',
+            precio: 'UF 4.200 - $150.000.000'
+        },
+        {
+            tipo: 'Terreno en venta',
+            img: 'img/terreno en venta 2.jpg',
+            comuna: 'Coquimbo',
+            provincia: 'Elqui',
+            sector: 'Peñuelas',
+            precio: 'UF 3.800 - $135.000.000'
+        },
+        {
+            tipo: 'Terreno en venta',
+            img: 'img/terreno en venta 3.jpg',
+            comuna: 'Ovalle',
+            provincia: 'Limarí',
+            sector: 'Centro',
+            precio: 'UF 2.900 - $100.000.000'
+        },
+        {
+            tipo: 'Departamento',
+            img: 'img/departamento 1.jpg',
+            comuna: 'La Serena',
+            provincia: 'Elqui',
+            sector: 'El Milagro',
+            precio: 'UF 5.200 - $180.000.000'
+        },
+        {
+            tipo: 'Departamento',
+            img: 'img/departamento 2.jpg',
+            comuna: 'Coquimbo',
+            provincia: 'Elqui',
+            sector: 'Peñuelas',
+            precio: 'UF 4.900 - $170.000.000'
+        },
+        {
+            tipo: 'Departamento',
+            img: 'img/departamento 3.jpg',
+            comuna: 'Ovalle',
+            provincia: 'Limarí',
+            sector: 'Centro',
+            precio: 'UF 3.700 - $120.000.000'
+        },
+        {
+            tipo: 'Casa',
+            img: 'img/casa 1.jpg',
+            comuna: 'La Serena',
+            provincia: 'Elqui',
+            sector: 'El Milagro',
+            precio: 'UF 6.500 - $220.000.000'
+        },
+        {
+            tipo: 'Casa',
+            img: 'img/casa 2.webp',
+            comuna: 'Coquimbo',
+            provincia: 'Elqui',
+            sector: 'Peñuelas',
+            precio: 'UF 5.900 - $200.000.000'
+        },
+        {
+            tipo: 'Casa',
+            img: 'img/casa 3.jpg',
+            comuna: 'Ovalle',
+            provincia: 'Limarí',
+            sector: 'Centro',
+            precio: 'UF 4.800 - $140.000.000'
+        }
+    ];
+
+    // Cargar propiedades de propietarios desde localStorage
+    function obtenerPropiedadesLocales() {
+        let props = [];
+        try {
+            const guardadas = JSON.parse(localStorage.getItem('propiedadesPNK')) || [];
+            // Solo mostrar las que están en estado 'Revisión' o 'Público'
+            props = guardadas.filter(p => p.estado === 'Revisión' || p.estado === 'Público');
+        } catch {}
+        // Adaptar formato para mostrar
+        return props.map(p => ({
+            tipo: p.tipo,
+            img: (p.fotos && p.fotos.length > 0) ? 'img/' + p.fotos[0] : 'img/no-image.png',
+            comuna: p.ubicacion || 'Sin dirección',
+            provincia: '',
+            sector: '',
+            precio: `UF ${p.precioUF || ''} - $${p.precioCLP || ''}`
+        }));
+    }
+
+    function obtenerTodasPropiedades() {
+        return [...obtenerPropiedadesLocales(), ...propiedadesFijas];
+    }
+
+
+    // Modal para detalles
+    if (!document.getElementById('modalDetallePropiedad')) {
+        const modalHtml = `
+        <div class="modal fade" id="modalDetallePropiedad" tabindex="-1">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded-4">
+              <div class="modal-header bg-light p-4">
+                <h5 class="fw-bold mb-0" id="modalDetalleTitulo">Detalle de la Propiedad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body p-4" id="modalDetalleBody"></div>
+            </div>
+          </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+
+    function renderPropiedades(lista) {
+        const container = document.getElementById('propiedadesContainer');
+        container.innerHTML = '';
+        if (lista.length === 0) {
+            container.innerHTML = '<div class="col-12"><div class="alert alert-warning text-center">No hay propiedades que coincidan con la búsqueda.</div></div>';
+            return;
+        }
+        lista.forEach((prop, idx) => {
+            // Valores inventados para las propiedades fijas
+            const esFija = !prop.id;
+            const areaConstruida = prop.areaConstruida || (esFija ? (80 + idx * 10) : '');
+            const dormitorios = prop.dormitorios || (esFija ? (2 + (idx % 4)) : '');
+            const solicitarVisita = prop.solicitarVisita !== undefined ? prop.solicitarVisita : (esFija ? (idx % 2 === 0) : false);
+            const precioUF = prop.precioUF || (esFija ? (4000 + idx * 500) : '');
+            const bodega = prop.bodega !== undefined ? prop.bodega : (esFija ? (idx % 2 === 0) : false);
+            const cocina = prop.cocina !== undefined ? prop.cocina : (esFija ? (idx % 2 === 1) : false);
+            const piscina = prop.piscina !== undefined ? prop.piscina : (esFija ? (idx % 3 === 0) : false);
+            const descripcion = prop.descripcion || (esFija ? 'Propiedad destacada en excelente ubicación.' : '');
+            const banios = prop.banios || (esFija ? (1 + (idx % 3)) : '');
+            const areaTotal = prop.areaTotal || (esFija ? (200 + idx * 20) : '');
+            const precioCLP = prop.precioCLP || (esFija ? (100000000 + idx * 10000000) : '');
+            const fechaPublicacion = prop.fechaPublicacion || (esFija ? '2026-04-05' : '');
+            const estacionamiento = prop.estacionamiento !== undefined ? prop.estacionamiento : (esFija ? (idx % 2 === 0) : false);
+            const antejardin = prop.antejardin !== undefined ? prop.antejardin : (esFija ? (idx % 2 === 1) : false);
+            const logia = prop.logia !== undefined ? prop.logia : (esFija ? (idx % 3 === 0) : false);
+            const patio = prop.patio !== undefined ? prop.patio : (esFija ? (idx % 2 === 0) : false);
+            const ubicacion = prop.ubicacion || (esFija ? 'La Serena, Chile' : '');
+            // Google Maps link
+            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ubicacion)}`;
+            // Compartir
+            const shareUrl = window.location.href;
+            const shareText = encodeURIComponent(`Mira esta propiedad: ${prop.tipo} en ${ubicacion}`);
+
+            container.innerHTML += `
+            <div class="col">
+                <article class="card h-100 border-0 shadow-sm">
+                    <img src="${prop.img}" alt="${prop.tipo} ${prop.comuna}" class="property-image w-100" style="object-fit:cover;height:240px;">
+                    <div class="card-body px-0">
+                        <h3 class="card-title h6 fw-bold">${prop.tipo}</h3>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <button class="btn btn-ver-mas btn-sm fw-bold border-dark" data-idx="${idx}" data-bs-toggle="modal" data-bs-target="#modalDetallePropiedad">Ver Más</button>
+                            <div>
+                                <span title="Compartir en Facebook" class="text-muted mx-1" aria-hidden="true"><i class="bi bi-facebook fs-5 mx-1"></i></span>
+                                <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${shareText}" target="_blank" title="Compartir en X"><i class="bi bi-twitter-x fs-5 mx-1"></i></a>
+                                <span title="Compartir en WhatsApp" class="text-muted mx-1" aria-hidden="true"><i class="bi bi-whatsapp fs-5 mx-1"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            `;
+        });
+
+        // Evento para mostrar detalles en el modal
+        setTimeout(() => {
+            document.querySelectorAll('.btn-ver-mas[data-idx]').forEach(btn => {
+                btn.onclick = function() {
+                    const idx = this.getAttribute('data-idx');
+                    const prop = lista[idx];
+                    const esFija = !prop.id;
+                    const areaConstruida = prop.areaConstruida || (esFija ? (80 + idx * 10) : '');
+                    const dormitorios = prop.dormitorios || (esFija ? (2 + (idx % 4)) : '');
+                    const solicitarVisita = prop.solicitarVisita !== undefined ? prop.solicitarVisita : (esFija ? (idx % 2 === 0) : false);
+                    const precioUF = prop.precioUF || (esFija ? (4000 + idx * 500) : '');
+                    const bodega = prop.bodega !== undefined ? prop.bodega : (esFija ? (idx % 2 === 0) : false);
+                    const cocina = prop.cocina !== undefined ? prop.cocina : (esFija ? (idx % 2 === 1) : false);
+                    const piscina = prop.piscina !== undefined ? prop.piscina : (esFija ? (idx % 3 === 0) : false);
+                    const descripcion = prop.descripcion || (esFija ? 'Propiedad destacada en excelente ubicación.' : '');
+                    const banios = prop.banios || (esFija ? (1 + (idx % 3)) : '');
+                    const areaTotal = prop.areaTotal || (esFija ? (200 + idx * 20) : '');
+                    const precioCLP = prop.precioCLP || (esFija ? (100000000 + idx * 10000000) : '');
+                    const fechaPublicacion = prop.fechaPublicacion || (esFija ? '2026-04-05' : '');
+                    const estacionamiento = prop.estacionamiento !== undefined ? prop.estacionamiento : (esFija ? (idx % 2 === 0) : false);
+                    const antejardin = prop.antejardin !== undefined ? prop.antejardin : (esFija ? (idx % 2 === 1) : false);
+                    const logia = prop.logia !== undefined ? prop.logia : (esFija ? (idx % 3 === 0) : false);
+                    const patio = prop.patio !== undefined ? prop.patio : (esFija ? (idx % 2 === 0) : false);
+                    const ubicacion = prop.ubicacion || (esFija ? 'La Serena, Chile' : '');
+                    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ubicacion)}`;
+                    document.getElementById('modalDetalleTitulo').textContent = prop.tipo;
+                    document.getElementById('modalDetalleBody').innerHTML = `
+                        <img src="${prop.img}" alt="${prop.tipo}" class="w-100 mb-3 rounded" style="max-height:300px;object-fit:cover;">
+                        <p><strong>Descripción:</strong> ${descripcion}</p>
+                        <p><strong>Área Construida:</strong> ${areaConstruida} m²</p>
+                        <p><strong>Área Total Terreno:</strong> ${areaTotal} m²</p>
+                        <p><strong>Dormitorios:</strong> ${dormitorios}</p>
+                        <p><strong>Baños:</strong> ${banios}</p>
+                        <p><strong>Precio UF:</strong> ${precioUF}</p>
+                        <p><strong>Precio $:</strong> ${precioCLP}</p>
+                        <p><strong>Fecha de Publicación:</strong> ${fechaPublicacion}</p>
+                        <p><strong>Solicitar Visita:</strong> ${solicitarVisita ? 'Sí' : 'No'}</p>
+                        <p><strong>Bodega:</strong> ${bodega ? 'Sí' : 'No'}</p>
+                        <p><strong>Cocina amoblada:</strong> ${cocina ? 'Sí' : 'No'}</p>
+                        <p><strong>Piscina:</strong> ${piscina ? 'Sí' : 'No'}</p>
+                        <p><strong>Estacionamiento:</strong> ${estacionamiento ? 'Sí' : 'No'}</p>
+                        <p><strong>Antejardín:</strong> ${antejardin ? 'Sí' : 'No'}</p>
+                        <p><strong>Logia:</strong> ${logia ? 'Sí' : 'No'}</p>
+                        <p><strong>Patio trasero:</strong> ${patio ? 'Sí' : 'No'}</p>
+                        <p><strong>Ubicación:</strong> <a href="${mapsUrl}" target="_blank">Ver en Google Maps</a></p>
+                    `;
+                };
+            });
+        }, 100);
+    }
+
+
+    // Mostrar todas al cargar
+    renderPropiedades(obtenerTodasPropiedades());
+
+    document.getElementById('formBuscador').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const comuna = document.getElementById('selectComuna').value;
+        const provincia = document.getElementById('selectProvincia').value;
+        const sector = document.getElementById('selectSector').value;
+        const todas = obtenerTodasPropiedades();
+        const filtradas = todas.filter(p =>
+            (comuna === '' || p.comuna === comuna) &&
+            (provincia === '' || p.provincia === provincia) &&
+            (sector === '' || p.sector === sector)
+        );
+        renderPropiedades(filtradas);
+    });
+    </script>
+</body>
+
+</html>
